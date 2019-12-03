@@ -1,28 +1,20 @@
 {
-  "name": "argon-dashboard-react",
+  "name": "catalog-product",
   "version": "1.0.0",
-  "description": "React version of Argon Dashboard by Creative Tim",
+  "description": "List catalog product",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creativetimofficial/argon-dashboard-react.git"
+    "url": "git+https://github.com/rizkysyarif/Catalog-Product.git"
   },
   "keywords": [
     "react",
     "reactjs",
-    "argon",
-    "argon-react",
     "dashboard",
-    "dashboard-react",
-    "argon-dashboard",
-    "argon-dashboard-react"
+    "dashboard-react"
   ],
-  "author": "Creative Tim",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/creativetimofficial/argon-dashboard-react/issues"
-  },
-  "homepage": "https://demos.creative-tim.com/argon-dashboard-react/",
+  "author": "Rizky",
+  "license": "",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
