@@ -10,7 +10,8 @@ import {
   Row,
   Modal, 
   Input,
-  ModalBody, ModalHeader, ModalFooter
+  ModalBody, 
+  ModalHeader, ModalFooter
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.jsx";
