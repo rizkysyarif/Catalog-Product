@@ -227,7 +227,7 @@ class Tables extends React.Component {
                     </div>
                     <div>
                       <label >Description :</label>
-                      <textarea required style={{width:'250px'}} class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write a large text here ..." name="description"></textarea>
+                      <textarea required style={{width:'250px'}} class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description Product" name="description"></textarea>
                     </div>
                     <label >Category :</label>
                     <Input style={{color:'black', width:'250px'}} type="select" ype="select" name="category" id="category" value={this.state.category} onChange={(event) => this.handlerChange(event)}>
@@ -325,7 +325,7 @@ class Tables extends React.Component {
                     </div>
                     <div>
                       <label >Description :</label>
-                      <textarea required style={{width:'250px'}} class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write a large text here ..." name="description" value={this.state.description} onChange={(event) => this.handlerChange(event)} ></textarea>
+                      <textarea required style={{width:'250px'}} class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description Product" name="description" value={this.state.description} onChange={(event) => this.handlerChange(event)} ></textarea>
                     </div>
                     <label >Category :</label>
                     <Input style={{color:'black', width:'250px'}} type="select" ype="select" name="category" id="category" value={this.state.category} onChange={(event) => this.handlerChange(event)}>
