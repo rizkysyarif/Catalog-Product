@@ -279,7 +279,7 @@ class Tables extends React.Component {
                                 <img
                                   style={{maxWidth:'100px', maxHeight:'100px'}}
                                   alt="..."
-                                  src={`/images/product/download/${val.image}`}
+                                  src={`${BASE_URL}/images/product/download/${val.image}`}
                                 />
                               <Media>
                                 <span className="mb-0 text-sm ml-3">
