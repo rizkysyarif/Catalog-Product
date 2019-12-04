@@ -16,6 +16,7 @@ import Header from "components/Headers/Header.jsx";
 import axios from "axios";
 import Rupiah from 'rupiah-format'
 const qs = require('querystring')
+let BASE_URL = process.env.REACT_APP_BASE_URL;
 
 class Tables extends React.Component {
   constructor(props){
@@ -43,7 +44,7 @@ class Tables extends React.Component {
   }
 
   getCategory = async () => {
-    await axios.get('http://localhost:3333/api/categories')
+    await axios.get(BASE_URL + '/categories')
 
     .then(result => {
       this.setState({categories: result.data})
@@ -55,7 +56,7 @@ class Tables extends React.Component {
   }
 
   getProduct = async () => {
-    await axios.get('http://localhost:3333/api/products?filter[include]=category')
+    await axios.get( BASE_URL + '/products?filter[include]=category')
 
     .then(result => {
       this.setState({product: result.data})
@@ -68,7 +69,7 @@ class Tables extends React.Component {
 
   delete(val){
     let id=val.id
-    axios.delete(`http://localhost:3333/api/products/${id}`, {
+    axios.delete(`${BASE_URL}/products/${id}`, {
       headers: {
         "Authorization": localStorage.getItem('token')
       }
@@ -109,7 +110,7 @@ class Tables extends React.Component {
       "description": e.target.description.value,
     }
 
-    axios.post('http://localhost:3333/api/images/product/upload', formData, {
+    axios.post( BASE_URL + '/images/product/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         "Authorization": localStorage.getItem('token')
@@ -119,7 +120,7 @@ class Tables extends React.Component {
       let imageName = res.data.result.files.file[0].name
       let token = localStorage.getItem('token')
       bodyData['image'] = imageName
-      axios.post('http://localhost:3333/api/products', qs.stringify(bodyData), {
+      axios.post( BASE_URL + '/products', qs.stringify(bodyData), {
         headers: {
           "Authorization": token
         }
@@ -152,7 +153,7 @@ class Tables extends React.Component {
     if (imageFile) {
       formData.append("file", imageFile)
 
-    axios.post('http://localhost:3333/api/images/product/upload', formData, {
+    axios.post( BASE_URL + '/images/product/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         "Authorization": localStorage.getItem('token')
@@ -162,7 +163,7 @@ class Tables extends React.Component {
       let imageName = res.data.result.files.file[0].name
       let token = localStorage.getItem('token')
       bodyData['image'] = imageName
-      axios.patch('http://localhost:3333/api/products/' + id, qs.stringify(bodyData), {
+      axios.patch('/products/' + id, qs.stringify(bodyData), {
         headers: {
           "Authorization": token
         }
@@ -180,7 +181,7 @@ class Tables extends React.Component {
     })
     } else {
       let token = localStorage.getItem('token')
-      axios.patch('http://localhost:3333/api/products/' + id, qs.stringify(bodyData), {
+      axios.patch( BASE_URL + '/products/' + id, qs.stringify(bodyData), {
         headers: {
           "Authorization": token
         }
@@ -277,7 +278,7 @@ class Tables extends React.Component {
                                 <img
                                   style={{maxWidth:'100px', maxHeight:'100px'}}
                                   alt="..."
-                                  src={`http://localhost:3333/api/images/product/download/${val.image}`}
+                                  src={`/images/product/download/${val.image}`}
                                 />
                               <Media>
                                 <span className="mb-0 text-sm ml-3">

@@ -16,6 +16,7 @@ import {
   Row,
   Col, Container
 } from "reactstrap";
+let BASE_URL = process.env.REACT_APP_BASE_URL;
 
 class Register extends React.Component {
   constructor(props){
@@ -39,7 +40,7 @@ class Register extends React.Component {
 
   register = (event) => {
     event.preventDefault(event);
-    axios.post('http://localhost:3333/api/Users', {
+    axios.post(BASE_URL + '/Users', {
       username:this.state.username,
       email:this.state.email,
       password:this.state.password,
@@ -47,7 +48,7 @@ class Register extends React.Component {
 
     .then(res => {
       if(res.status === 200){
-        axios.post('http://localhost:3333/api/Users/login', {
+        axios.post( BASE_URL + '/Users/login', {
           email:this.state.email,
           password:this.state.password,
         })

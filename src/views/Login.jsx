@@ -16,6 +16,8 @@ import {
 
 import axios from 'axios'
 
+let BASE_URL = process.env.REACT_APP_BASE_URL;
+
 class Login extends React.Component {
   constructor(props){
     super(props)
@@ -37,7 +39,7 @@ class Login extends React.Component {
 
   login = (event) => {
     event.preventDefault(event);
-    axios.post('http://localhost:3333/api/Users/login', {
+    axios.post(BASE_URL + '/Users/login', {
       email:this.state.email,
       password:this.state.password,
     })
