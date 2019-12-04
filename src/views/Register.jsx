@@ -39,7 +39,7 @@ class Register extends React.Component {
 
   register = (event) => {
     event.preventDefault(event);
-    axios.post('http://localhost:3000/api/Users', {
+    axios.post('http://localhost:3333/api/Users', {
       username:this.state.username,
       email:this.state.email,
       password:this.state.password,
@@ -47,7 +47,7 @@ class Register extends React.Component {
 
     .then(res => {
       if(res.status === 200){
-        axios.post('http://localhost:3000/api/Users/login', {
+        axios.post('http://localhost:3333/api/Users/login', {
           email:this.state.email,
           password:this.state.password,
         })

@@ -25,7 +25,7 @@ class Index extends React.Component {
   }
 
   getProduct = async () => {
-    await axios.get('http://localhost:3000/api/products?filter[include]=category')
+    await axios.get('http://localhost:3333/api/products?filter[include]=category')
 
     .then(result => {
       this.setState({product: result.data})
@@ -46,7 +46,7 @@ class Index extends React.Component {
                   return (
                     <Col lg="6" xl="3">
                       <div className="card mb-5" style={{width:'18rem'}}>
-                        <img className="card-img-top" style={{maxHeight:'270px', minHeight:'270px'}} src={`http://localhost:3000/api/images/product/download/${val.image}`} alt="Card image cap" />
+                        <img className="card-img-top" style={{maxHeight:'270px', minHeight:'270px'}} src={`http://localhost:3333/api/images/product/download/${val.image}`} alt="Card image cap" />
                         <div className="card-body">
                           <h2 className="card-title">{val.name}</h2>
                           <p note className="card-text">{val.category.name_category}</p>

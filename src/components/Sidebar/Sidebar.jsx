@@ -97,7 +97,7 @@ class Sidebar extends React.Component {
   }
 
   getUser = () => {
-    Axios.get('http://localhost:3000/api/Users/' + this.state.isLogin,{
+    Axios.get('http://localhost:3333/api/Users/' + this.state.isLogin,{
       headers: {
         "Authorization": localStorage.getItem('token')
     }  
@@ -114,7 +114,7 @@ class Sidebar extends React.Component {
   
 
   logout(){
-    Axios.post('http://localhost:3000/api/Users/logout')
+    Axios.post('http://localhost:3333/api/Users/logout')
     localStorage.clear()
     window.location.reload()
   }
