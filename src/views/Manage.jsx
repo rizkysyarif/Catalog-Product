@@ -8,7 +8,8 @@ import {
   Table,
   Container,
   Row,
-  Modal, Input,
+  Modal, 
+  Input,
   ModalBody, ModalHeader, ModalFooter
 } from "reactstrap";
 // core components
