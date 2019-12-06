@@ -26,6 +26,7 @@ import {
   Row,
   Col, Button
 } from "reactstrap";
+let BASE_URL = process.env.REACT_APP_BASE_URL;
 
 var ps;
 
@@ -97,7 +98,7 @@ class Sidebar extends React.Component {
   }
 
   getUser = () => {
-    Axios.get('http://localhost:3333/api/Users/' + this.state.isLogin,{
+    Axios.get(BASE_URL + '/Users/' + this.state.isLogin,{
       headers: {
         "Authorization": localStorage.getItem('token')
     }  
@@ -114,7 +115,7 @@ class Sidebar extends React.Component {
   
 
   logout(){
-    Axios.post('http://localhost:3333/api/Users/logout')
+    Axios.post(BASE_URL + '/Users/logout')
     localStorage.clear()
     window.location.reload()
   }
