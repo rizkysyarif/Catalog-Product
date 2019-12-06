@@ -18,6 +18,9 @@ import {
   Media, Button
 } from "reactstrap";
 import Axios from "axios";
+import { getProduct } from '../../Public/Redux/Actions/Product'
+import { connect } from 'react-redux'
+
 let BASE_URL = process.env.REACT_APP_BASE_URL;
 
 class AdminNavbar extends React.Component {
@@ -25,10 +28,13 @@ class AdminNavbar extends React.Component {
     super(props)
     this.state={
       isLogin:localStorage.getItem('user'),
-      user:[]
+      user:[],
+      product:[],
+      search:''
     }
   }
   componentDidMount = async () =>{
+    await this.getProduct
     if(this.state.isLogin !== null){
       await this.getUser()
     }
@@ -94,6 +100,19 @@ class AdminNavbar extends React.Component {
     return element
   }
 
+  async getDataProduct(search=""){
+    await this.props.dispatch(getProduct(search))
+  }
+
+  async searchValue(e) {
+    let value = e.target.value
+    setTimeout( async () => {
+      await this.getDataProduct(
+        value
+      )
+    }, 1000)
+  }
+
   render() {
     return (
       <>
@@ -105,15 +124,15 @@ class AdminNavbar extends React.Component {
             >
               {this.props.brandText}
             </Link>
-            <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" onSubmit={e => { e.preventDefault(); }}> 
               <FormGroup className="mb-0">
                 <InputGroup className="input-group-alternative">
                   <InputGroupAddon addonType="prepend" >
                     <InputGroupText > 
-                      <i className="fas fa-search" style={{color:'white'}} />
+                      <i className="fas fa-search" style={{color:'white'}}  />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input placeholder="Search" type="text" style={{color:'white'}} />
+                  <Input placeholder="Search" type="text" style={{color:'white'}} onChange={(e) => this.searchValue(e)} />
                 </InputGroup>
               </FormGroup>
             </Form>
@@ -125,4 +144,10 @@ class AdminNavbar extends React.Component {
   }
 }
 
-export default AdminNavbar;
+const mapStateToProps = state => {
+  return {
+    data: state.productList
+  }
+}
+
+export default connect (mapStateToProps)(AdminNavbar);

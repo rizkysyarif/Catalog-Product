@@ -18,6 +18,9 @@ import {
 import Header from "components/Headers/Header.jsx";
 import axios from "axios";
 import Rupiah from 'rupiah-format'
+import { getProduct } from '../Public/Redux/Actions/Product'
+import { connect } from 'react-redux'
+
 const qs = require('querystring')
 let BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -36,7 +39,8 @@ class Tables extends React.Component {
       description:'',
       price:0,
       image:'',
-      idProduct:0
+      idProduct:0,
+      search:''
 
     }
   }
@@ -58,15 +62,12 @@ class Tables extends React.Component {
     })
   }
 
-  getProduct = async () => {
-    await axios.get( BASE_URL + '/products?filter[include]=category')
-
-    .then(result => {
-      this.setState({product: result.data})
-    })
-    
-    .catch(err => {
-      console.log(err)
+  getProduct = async (search="") => {
+    await this.props.dispatch(getProduct(
+      search
+    ))
+    this.setState({
+      search: search
     })
   }
 
@@ -273,7 +274,7 @@ class Tables extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.product.map((val, key) => {
+                    {this.props.data.productList.map((val, key) => {
                       return (
                         <tr>
                           <th scope="row" className='text-center'>
@@ -362,5 +363,10 @@ class Tables extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    data: state.productList
+  }
+}
 
-export default Tables;
+export default connect(mapStateToProps)(Tables);

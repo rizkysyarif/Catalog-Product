@@ -3,10 +3,13 @@ import React, { isValidElement } from "react";
 import {
   Container,
   Row,
-  Col
+  Col, InputGroupText, Input,
+  Form, FormGroup, InputGroup, InputGroupAddon
 } from "reactstrap";
 import axios from 'axios'
 import Rupiah from 'rupiah-format'
+import { getProduct } from '../Public/Redux/Actions/Product'
+import { connect } from 'react-redux'
 
 // core components
 
@@ -17,7 +20,7 @@ class Index extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      product: []
+      search:''
     }
   }
 
@@ -25,15 +28,12 @@ class Index extends React.Component {
     await this.getProduct()
   }
 
-  getProduct = async () => {
-    await axios.get(BASE_URL + '/products?filter[include]=category')
-
-    .then(result => {
-      this.setState({product: result.data})
-    })
-    
-    .catch(err => {
-      console.log(err)
+  getProduct = async (search="") => {
+    await this.props.dispatch(getProduct(
+      search
+    ))
+    this.setState({
+      search: search
     })
   }
 
@@ -43,7 +43,7 @@ class Index extends React.Component {
         <Header />
         <Container fluid>
               <Row>
-                {this.state.product.map((val) => {   
+                {this.props.data.productList.map((val) => {   
                   return (
                     <Col lg="6" xl="3">
                       <div className="card mb-5" style={{width:'18rem'}}>
@@ -65,4 +65,10 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+const mapStateToProps = state => {
+  return {
+    data: state.productList
+  }
+}
+
+export default connect(mapStateToProps)(Index);
